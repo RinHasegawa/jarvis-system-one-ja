@@ -1,0 +1,759 @@
+{
+  "schema_version": 2,
+  "purpose": "Manual clean-environment comparison; this script never closes Codex or other applications.",
+  "benchmark_mode": "action_target_v2",
+  "frozen_case_count": 70,
+  "execution_order": [
+    "onnx_fp32",
+    "openvino_fp32"
+  ],
+  "host": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14",
+    "physical_cpu_count": 4,
+    "logical_cpu_count": 8
+  },
+  "suite_before": {
+    "timestamp_local": "2026-09-19T23:22:31+0900",
+    "total_ram_mib": 7778.152,
+    "available_ram_mib": 3849.762,
+    "ram_percent": 50.5,
+    "pagefile_total_mib": 10815.672,
+    "pagefile_used_mib": 746.359,
+    "pagefile_percent": 6.9,
+    "cpu_percent": 3.9,
+    "top_processes_by_rss": [
+      {
+        "pid": 19388,
+        "name": "MsMpEng.exe",
+        "rss_mib": 266.379
+      },
+      {
+        "pid": 26136,
+        "name": "explorer.exe",
+        "rss_mib": 177.363
+      },
+      {
+        "pid": 17824,
+        "name": "SearchHost.exe",
+        "rss_mib": 153.484
+      },
+      {
+        "pid": 5112,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 127.816
+      },
+      {
+        "pid": 11776,
+        "name": "ctfmon.exe",
+        "rss_mib": 109.117
+      },
+      {
+        "pid": 15228,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 91.836
+      },
+      {
+        "pid": 28380,
+        "name": "WindowsTerminal.exe",
+        "rss_mib": 88.211
+      },
+      {
+        "pid": 10192,
+        "name": "OneDrive.exe",
+        "rss_mib": 81.211
+      },
+      {
+        "pid": 11124,
+        "name": "powershell.exe",
+        "rss_mib": 72.012
+      },
+      {
+        "pid": 14780,
+        "name": "RuntimeBroker.exe",
+        "rss_mib": 69.289
+      },
+      {
+        "pid": 11304,
+        "name": "powershell.exe",
+        "rss_mib": 67.875
+      },
+      {
+        "pid": 2028,
+        "name": "backgroundTaskHost.exe",
+        "rss_mib": 67.199
+      },
+      {
+        "pid": 100,
+        "name": "OneDrive.Sync.Service.exe",
+        "rss_mib": 65.199
+      },
+      {
+        "pid": 27232,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 65.055
+      },
+      {
+        "pid": 23652,
+        "name": "TextInputHost.exe",
+        "rss_mib": 50.969
+      },
+      {
+        "pid": 7544,
+        "name": "dwm.exe",
+        "rss_mib": 50.883
+      },
+      {
+        "pid": 25188,
+        "name": "ShellExperienceHost.exe",
+        "rss_mib": 41.133
+      },
+      {
+        "pid": 1180,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 40.445
+      },
+      {
+        "pid": 140,
+        "name": "",
+        "rss_mib": 38.824
+      },
+      {
+        "pid": 19592,
+        "name": "node.exe",
+        "rss_mib": 36.918
+      }
+    ]
+  },
+  "runs": [
+    {
+      "id": "onnx_fp32",
+      "label": "ONNX Runtime FP32 CPU",
+      "backend": "onnx",
+      "precision": "fp32",
+      "threads": 4,
+      "before": {
+        "timestamp_local": "2026-09-19T23:22:33+0900",
+        "total_ram_mib": 7778.152,
+        "available_ram_mib": 3837.586,
+        "ram_percent": 50.7,
+        "pagefile_total_mib": 10815.672,
+        "pagefile_used_mib": 746.359,
+        "pagefile_percent": 6.9,
+        "cpu_percent": 10.0,
+        "top_processes_by_rss": [
+          {
+            "pid": 19388,
+            "name": "MsMpEng.exe",
+            "rss_mib": 266.336
+          },
+          {
+            "pid": 26136,
+            "name": "explorer.exe",
+            "rss_mib": 177.461
+          },
+          {
+            "pid": 17824,
+            "name": "SearchHost.exe",
+            "rss_mib": 153.484
+          },
+          {
+            "pid": 5112,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 127.816
+          },
+          {
+            "pid": 11776,
+            "name": "ctfmon.exe",
+            "rss_mib": 109.117
+          },
+          {
+            "pid": 15228,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 91.836
+          },
+          {
+            "pid": 28380,
+            "name": "WindowsTerminal.exe",
+            "rss_mib": 88.211
+          },
+          {
+            "pid": 10192,
+            "name": "OneDrive.exe",
+            "rss_mib": 81.211
+          },
+          {
+            "pid": 11124,
+            "name": "powershell.exe",
+            "rss_mib": 72.012
+          },
+          {
+            "pid": 14780,
+            "name": "RuntimeBroker.exe",
+            "rss_mib": 69.289
+          },
+          {
+            "pid": 11304,
+            "name": "powershell.exe",
+            "rss_mib": 67.875
+          },
+          {
+            "pid": 2028,
+            "name": "backgroundTaskHost.exe",
+            "rss_mib": 67.199
+          },
+          {
+            "pid": 100,
+            "name": "OneDrive.Sync.Service.exe",
+            "rss_mib": 65.262
+          },
+          {
+            "pid": 27232,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 65.055
+          },
+          {
+            "pid": 23652,
+            "name": "TextInputHost.exe",
+            "rss_mib": 50.969
+          },
+          {
+            "pid": 7544,
+            "name": "dwm.exe",
+            "rss_mib": 50.855
+          },
+          {
+            "pid": 25188,
+            "name": "ShellExperienceHost.exe",
+            "rss_mib": 41.133
+          },
+          {
+            "pid": 1180,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 40.445
+          },
+          {
+            "pid": 140,
+            "name": "",
+            "rss_mib": 38.824
+          },
+          {
+            "pid": 19592,
+            "name": "node.exe",
+            "rss_mib": 36.918
+          }
+        ]
+      },
+      "after": {
+        "timestamp_local": "2026-09-19T23:23:41+0900",
+        "total_ram_mib": 7778.152,
+        "available_ram_mib": 3861.852,
+        "ram_percent": 50.4,
+        "pagefile_total_mib": 10815.672,
+        "pagefile_used_mib": 704.188,
+        "pagefile_percent": 6.5,
+        "cpu_percent": 7.7,
+        "top_processes_by_rss": [
+          {
+            "pid": 19388,
+            "name": "MsMpEng.exe",
+            "rss_mib": 224.305
+          },
+          {
+            "pid": 26136,
+            "name": "explorer.exe",
+            "rss_mib": 165.754
+          },
+          {
+            "pid": 17824,
+            "name": "SearchHost.exe",
+            "rss_mib": 153.219
+          },
+          {
+            "pid": 5112,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 130.766
+          },
+          {
+            "pid": 11776,
+            "name": "ctfmon.exe",
+            "rss_mib": 109.035
+          },
+          {
+            "pid": 15228,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 88.523
+          },
+          {
+            "pid": 28380,
+            "name": "WindowsTerminal.exe",
+            "rss_mib": 78.422
+          },
+          {
+            "pid": 10192,
+            "name": "OneDrive.exe",
+            "rss_mib": 78.387
+          },
+          {
+            "pid": 3668,
+            "name": "MemCompression",
+            "rss_mib": 69.418
+          },
+          {
+            "pid": 11304,
+            "name": "powershell.exe",
+            "rss_mib": 67.203
+          },
+          {
+            "pid": 27232,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 65.047
+          },
+          {
+            "pid": 100,
+            "name": "OneDrive.Sync.Service.exe",
+            "rss_mib": 64.988
+          },
+          {
+            "pid": 14780,
+            "name": "RuntimeBroker.exe",
+            "rss_mib": 62.043
+          },
+          {
+            "pid": 11124,
+            "name": "powershell.exe",
+            "rss_mib": 59.766
+          },
+          {
+            "pid": 23652,
+            "name": "TextInputHost.exe",
+            "rss_mib": 50.832
+          },
+          {
+            "pid": 7544,
+            "name": "dwm.exe",
+            "rss_mib": 43.789
+          },
+          {
+            "pid": 25188,
+            "name": "ShellExperienceHost.exe",
+            "rss_mib": 41.133
+          },
+          {
+            "pid": 1180,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 40.539
+          },
+          {
+            "pid": 140,
+            "name": "",
+            "rss_mib": 38.824
+          },
+          {
+            "pid": 19592,
+            "name": "node.exe",
+            "rss_mib": 36.355
+          }
+        ]
+      },
+      "exit_code": 0,
+      "result_file": "benchmarks\\clean_run\\laya_onnx_fp32_clean.json",
+      "log_file": "benchmarks\\clean_run\\laya_onnx_fp32_clean.log",
+      "result_written_this_run": true,
+      "summary": {
+        "action_accuracy": 0.484375,
+        "target_accuracy": 0.92,
+        "latency_ms": {
+          "p50": 504.725,
+          "p95": 686.024,
+          "mean": 541.365
+        },
+        "peak_process_rss_mib": 1046.734,
+        "available_ram_before_mib": 3801.973,
+        "available_ram_after_mib": 2832.266,
+        "pagefile_before": {
+          "used_mib": 746.227,
+          "percent": 6.9
+        },
+        "pagefile_after": {
+          "used_mib": 704.215,
+          "percent": 6.5
+        },
+        "average_system_cpu_percent": 42.142,
+        "average_process_cpu_percent_machine_capacity": 49.755
+      },
+      "validation_error": null
+    },
+    {
+      "id": "openvino_fp32",
+      "label": "OpenVINO FP32 CPU (4 threads)",
+      "backend": "openvino",
+      "precision": "fp32",
+      "threads": 4,
+      "before": {
+        "timestamp_local": "2026-09-19T23:23:42+0900",
+        "total_ram_mib": 7778.152,
+        "available_ram_mib": 3864.027,
+        "ram_percent": 50.3,
+        "pagefile_total_mib": 10815.672,
+        "pagefile_used_mib": 703.516,
+        "pagefile_percent": 6.5,
+        "cpu_percent": 1.2,
+        "top_processes_by_rss": [
+          {
+            "pid": 19388,
+            "name": "MsMpEng.exe",
+            "rss_mib": 211.375
+          },
+          {
+            "pid": 26136,
+            "name": "explorer.exe",
+            "rss_mib": 165.754
+          },
+          {
+            "pid": 17824,
+            "name": "SearchHost.exe",
+            "rss_mib": 153.219
+          },
+          {
+            "pid": 5112,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 130.766
+          },
+          {
+            "pid": 11776,
+            "name": "ctfmon.exe",
+            "rss_mib": 109.035
+          },
+          {
+            "pid": 15228,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 88.523
+          },
+          {
+            "pid": 28380,
+            "name": "WindowsTerminal.exe",
+            "rss_mib": 78.684
+          },
+          {
+            "pid": 10192,
+            "name": "OneDrive.exe",
+            "rss_mib": 78.387
+          },
+          {
+            "pid": 3668,
+            "name": "MemCompression",
+            "rss_mib": 67.871
+          },
+          {
+            "pid": 11304,
+            "name": "powershell.exe",
+            "rss_mib": 67.203
+          },
+          {
+            "pid": 27232,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 65.047
+          },
+          {
+            "pid": 100,
+            "name": "OneDrive.Sync.Service.exe",
+            "rss_mib": 64.988
+          },
+          {
+            "pid": 14780,
+            "name": "RuntimeBroker.exe",
+            "rss_mib": 62.043
+          },
+          {
+            "pid": 11124,
+            "name": "powershell.exe",
+            "rss_mib": 59.766
+          },
+          {
+            "pid": 23652,
+            "name": "TextInputHost.exe",
+            "rss_mib": 50.832
+          },
+          {
+            "pid": 7544,
+            "name": "dwm.exe",
+            "rss_mib": 43.789
+          },
+          {
+            "pid": 25188,
+            "name": "ShellExperienceHost.exe",
+            "rss_mib": 41.133
+          },
+          {
+            "pid": 1180,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 40.539
+          },
+          {
+            "pid": 140,
+            "name": "",
+            "rss_mib": 38.824
+          },
+          {
+            "pid": 19592,
+            "name": "node.exe",
+            "rss_mib": 36.355
+          }
+        ]
+      },
+      "after": {
+        "timestamp_local": "2026-09-19T23:24:49+0900",
+        "total_ram_mib": 7778.152,
+        "available_ram_mib": 3934.25,
+        "ram_percent": 49.4,
+        "pagefile_total_mib": 10815.672,
+        "pagefile_used_mib": 656.715,
+        "pagefile_percent": 6.1,
+        "cpu_percent": 2.7,
+        "top_processes_by_rss": [
+          {
+            "pid": 19388,
+            "name": "MsMpEng.exe",
+            "rss_mib": 201.191
+          },
+          {
+            "pid": 26136,
+            "name": "explorer.exe",
+            "rss_mib": 165.598
+          },
+          {
+            "pid": 17824,
+            "name": "SearchHost.exe",
+            "rss_mib": 152.895
+          },
+          {
+            "pid": 5112,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 130.766
+          },
+          {
+            "pid": 11776,
+            "name": "ctfmon.exe",
+            "rss_mib": 108.949
+          },
+          {
+            "pid": 3668,
+            "name": "MemCompression",
+            "rss_mib": 101.324
+          },
+          {
+            "pid": 15228,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 87.992
+          },
+          {
+            "pid": 10192,
+            "name": "OneDrive.exe",
+            "rss_mib": 78.387
+          },
+          {
+            "pid": 28380,
+            "name": "WindowsTerminal.exe",
+            "rss_mib": 78.191
+          },
+          {
+            "pid": 11304,
+            "name": "powershell.exe",
+            "rss_mib": 66.992
+          },
+          {
+            "pid": 100,
+            "name": "OneDrive.Sync.Service.exe",
+            "rss_mib": 65.02
+          },
+          {
+            "pid": 27232,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 64.906
+          },
+          {
+            "pid": 11124,
+            "name": "powershell.exe",
+            "rss_mib": 59.746
+          },
+          {
+            "pid": 14780,
+            "name": "RuntimeBroker.exe",
+            "rss_mib": 53.629
+          },
+          {
+            "pid": 23652,
+            "name": "TextInputHost.exe",
+            "rss_mib": 50.316
+          },
+          {
+            "pid": 7544,
+            "name": "dwm.exe",
+            "rss_mib": 43.785
+          },
+          {
+            "pid": 25188,
+            "name": "ShellExperienceHost.exe",
+            "rss_mib": 41.133
+          },
+          {
+            "pid": 1180,
+            "name": "msedgewebview2.exe",
+            "rss_mib": 40.555
+          },
+          {
+            "pid": 140,
+            "name": "",
+            "rss_mib": 38.824
+          },
+          {
+            "pid": 19592,
+            "name": "node.exe",
+            "rss_mib": 36.352
+          }
+        ]
+      },
+      "exit_code": 0,
+      "result_file": "benchmarks\\clean_run\\laya_openvino_fp32_clean.json",
+      "log_file": "benchmarks\\clean_run\\laya_openvino_fp32_clean.log",
+      "result_written_this_run": true,
+      "summary": {
+        "action_accuracy": 0.484375,
+        "target_accuracy": 0.92,
+        "latency_ms": {
+          "p50": 423.338,
+          "p95": 932.707,
+          "mean": 574.771
+        },
+        "peak_process_rss_mib": 2299.27,
+        "available_ram_before_mib": 3811.133,
+        "available_ram_after_mib": 1663.824,
+        "pagefile_before": {
+          "used_mib": 703.512,
+          "percent": 6.5
+        },
+        "pagefile_after": {
+          "used_mib": 656.715,
+          "percent": 6.1
+        },
+        "average_system_cpu_percent": 45.072,
+        "average_process_cpu_percent_machine_capacity": 48.907
+      },
+      "validation_error": null
+    }
+  ],
+  "suite_after": {
+    "timestamp_local": "2026-09-19T23:24:51+0900",
+    "total_ram_mib": 7778.152,
+    "available_ram_mib": 3933.715,
+    "ram_percent": 49.4,
+    "pagefile_total_mib": 10815.672,
+    "pagefile_used_mib": 656.715,
+    "pagefile_percent": 6.1,
+    "cpu_percent": 2.1,
+    "top_processes_by_rss": [
+      {
+        "pid": 19388,
+        "name": "MsMpEng.exe",
+        "rss_mib": 208.176
+      },
+      {
+        "pid": 26136,
+        "name": "explorer.exe",
+        "rss_mib": 165.613
+      },
+      {
+        "pid": 17824,
+        "name": "SearchHost.exe",
+        "rss_mib": 152.895
+      },
+      {
+        "pid": 5112,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 130.766
+      },
+      {
+        "pid": 11776,
+        "name": "ctfmon.exe",
+        "rss_mib": 108.949
+      },
+      {
+        "pid": 3668,
+        "name": "MemCompression",
+        "rss_mib": 101.324
+      },
+      {
+        "pid": 15228,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 87.992
+      },
+      {
+        "pid": 28380,
+        "name": "WindowsTerminal.exe",
+        "rss_mib": 78.766
+      },
+      {
+        "pid": 10192,
+        "name": "OneDrive.exe",
+        "rss_mib": 78.367
+      },
+      {
+        "pid": 11304,
+        "name": "powershell.exe",
+        "rss_mib": 66.992
+      },
+      {
+        "pid": 100,
+        "name": "OneDrive.Sync.Service.exe",
+        "rss_mib": 65.02
+      },
+      {
+        "pid": 27232,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 64.906
+      },
+      {
+        "pid": 11124,
+        "name": "powershell.exe",
+        "rss_mib": 59.746
+      },
+      {
+        "pid": 14780,
+        "name": "RuntimeBroker.exe",
+        "rss_mib": 53.641
+      },
+      {
+        "pid": 23652,
+        "name": "TextInputHost.exe",
+        "rss_mib": 50.316
+      },
+      {
+        "pid": 7544,
+        "name": "dwm.exe",
+        "rss_mib": 43.785
+      },
+      {
+        "pid": 25188,
+        "name": "ShellExperienceHost.exe",
+        "rss_mib": 41.133
+      },
+      {
+        "pid": 1180,
+        "name": "msedgewebview2.exe",
+        "rss_mib": 40.555
+      },
+      {
+        "pid": 140,
+        "name": "",
+        "rss_mib": 38.824
+      },
+      {
+        "pid": 19592,
+        "name": "node.exe",
+        "rss_mib": 36.352
+      }
+    ]
+  },
+  "overall_exit_code": 0
+}

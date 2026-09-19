@@ -1,0 +1,48 @@
+# Local environments and caches
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# JavaScript dependencies and build output
+node_modules/
+**/node_modules/
+dist/
+build/
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+
+# Downloaded or converted model weights
+benchmarks/artifacts/
+*.onnx
+*.onnx.data
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# Machine-local benchmark by-products and non-canonical Vercel attempt
+*.log
+benchmarks/clean_run/jev_vercel_action_target_v2.json
+benchmarks/vercel_jev/
+
+# Local handoff copies, archives, and OS/editor files
+Jarvis_share/
+JARVIS_Phase0-2_Report_2026-09-19/
+JARVIS_Phase2_5_報告用/
+*.zip
+.DS_Store
+Thumbs.db
+.vscode/

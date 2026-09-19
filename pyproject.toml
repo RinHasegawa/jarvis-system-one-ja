@@ -1,0 +1,14 @@
+[project]
+name = "jarvis-local"
+version = "0.0.0"
+description = "JARVIS feasibility benchmarks; the V0 application is not implemented yet."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "laya==0.3.3",
+    "nncf==3.4.0",
+    "onnx==1.23.0",
+    "onnxruntime==1.30.0",
+    "onnxscript==0.7.2",
+    "openvino==2026.4.0",
+    "psutil==7.0.0",
+]

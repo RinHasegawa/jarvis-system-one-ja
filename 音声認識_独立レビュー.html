@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JARVIS 音声認識｜独立レビュー</title>
+<style>
+:root{color-scheme:light;--ink:#10263b;--muted:#52677a;--blue:#1967d2;--teal:#067c72;--line:#dbe5ed;--bg:#f3f7fa;--amber:#976400;--red:#a53d3d}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Yu Gothic UI","Meiryo",system-ui,sans-serif;line-height:1.75}a{color:#155ac2}header{background:#102d46;color:#fff;padding:58px 24px 48px}header .wrap,main{max-width:1120px;margin:auto}.eyebrow{color:#9ad9d3;font-size:.76rem;font-weight:800;letter-spacing:.16em}h1{font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1.3;margin:12px 0 14px;letter-spacing:.01em}header p{max-width:750px;color:#d7e6ef;margin:0}.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.meta span{border:1px solid #567084;border-radius:999px;padding:4px 13px;font-size:.78rem;color:#dbeaf2}main{padding:0 24px 70px}.summary{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;margin-top:-22px}.card,.panel{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 24px #1b3b5510}.card{padding:22px}.label{font-size:.74rem;font-weight:800;letter-spacing:.08em;color:var(--muted)}.big{font-size:1.24rem;line-height:1.45;font-weight:800;margin:8px 0}.card p{font-size:.85rem;color:var(--muted);margin:0}.tag{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.73rem;font-weight:800;white-space:nowrap}.ok{background:#dff4ed;color:#08674c}.warn{background:#fff1cf;color:#805500}.neutral{background:#e9eef4;color:#435568}.section{margin-top:52px}.section h2{font-size:1.55rem;line-height:1.4;margin:0 0 8px}.lead{margin:0 0 20px;color:var(--muted);font-size:.94rem}.panel{padding:26px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.step{background:#f4f8fb;border:1px solid #e0eaf0;padding:16px;border-radius:12px;position:relative;min-width:0}.step:not(:last-child):after{content:'→';position:absolute;right:-13px;top:36%;font-size:1.2rem;color:#5995a2;z-index:2}.step .n{font-size:.68rem;font-weight:800;color:var(--teal)}.step strong{display:block;margin:5px 0;font-size:.94rem}.step p{margin:0;color:var(--muted);font-size:.8rem}.future{margin-top:16px;padding:14px 18px;background:#f2f3f5;border-radius:10px;color:#596879;font-size:.9rem}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.finding{border-left:4px solid #d99a20}.finding h3,.panel h3{font-size:1.04rem;margin:0 0 8px}.finding p,.panel p{font-size:.9rem;margin:8px 0;color:#344b5e}.finding .result{border-top:1px solid var(--line);padding-top:10px;color:#155a4f}.notice{background:#fff8e9;border:1px solid #f0d69c;border-radius:12px;padding:18px 20px;margin-top:16px}.notice strong{color:#795300}.notice p{margin:5px 0 0;font-size:.9rem;color:#5a4c32}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.87rem}th,td{text-align:left;vertical-align:top;padding:13px 11px;border-bottom:1px solid var(--line)}th{font-size:.75rem;letter-spacing:.04em;color:#65798a}tr:last-child td{border-bottom:0}.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.pillars .panel{padding:20px}.number{font-size:.75rem;font-weight:800;color:var(--blue)}code{font-family:Consolas,monospace;font-size:.88em;background:#eef3f7;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.panel ul{padding-left:1.2em;margin:8px 0;color:#344b5e;font-size:.9rem}.panel li+li{margin-top:7px}.refs{font-size:.82rem;overflow-wrap:anywhere}.refs li+li{margin-top:8px}footer{border-top:1px solid var(--line);color:var(--muted);padding-top:20px;margin-top:48px;font-size:.78rem}@media(max-width:760px){header{padding:42px 20px 40px}main{padding:0 16px 50px}.summary,.grid2,.pillars{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.step{padding:13px}.step:not(:last-child):after{content:'↓';right:18px;top:auto;bottom:-19px}.section{margin-top:40px}.panel{padding:20px}.summary{margin-top:-18px}}@media print{header{print-color-adjust:exact;-webkit-print-color-adjust:exact}.card,.panel{box-shadow:none}.section{break-inside:avoid}a{color:inherit}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="eyebrow">JARVIS / INDEPENDENT REVIEW</div><h1>音声認識のしくみと<br>安全性・精度の確認</h1><p>現在動く範囲、独立レビューの指摘、修正内容、まだ実際の声で確認できていないことをまとめたレポートです。</p><div class="meta"><span>確認日：2026年10月31日</span><span>対象：ローカル音声認識テスト</span><span>独立レビュー：2件</span></div></div></header>
+<main>
+<div class="notice"><strong>過去のレビュー：</strong>このページは旧 Whisper 録音テストの記録です。現在のリアルタイム試作は <a href="リアルタイム音声認識_技術レポート.html">新しい技術レポート</a> を参照してください。</div>
+<section class="summary" aria-label="現在の結論">
+<div class="card"><span class="label">現在できること</span><div class="big">録音した日本語を<br>文字にする</div><p>Enter で開始し、録音後に結果を表示。リアルタイム認識ではありません。</p></div>
+<div class="card"><span class="label">レビュー後の状態</span><div class="big">2つの指摘に対応</div><p>音声変換時のノイズと、通常起動時のモデル取得通信を修正。</p></div>
+<div class="card"><span class="label">まだ確認できないこと</span><div class="big">あなたの声での精度</div><p>実マイク、雑音、話し方ごとの認識率と待ち時間は未測定です。</p></div>
+</section>
+
+<section class="section" id="architecture"><h2>01　音声が文字になるまで</h2><p class="lead">現状は、録音が終わってからまとめて処理するシンプルな構成です。</p><div class="panel"><div class="flow">
+<div class="step"><span class="n">01 / START</span><strong>Enter を押す</strong><p>既定マイクを選び、5秒間録音します。長さは変更可能。</p></div>
+<div class="step"><span class="n">02 / AUDIO</span><strong>音声を整える</strong><p>マイクのサンプリング周波数を、認識用の 16 kHz に変換します。</p></div>
+<div class="step"><span class="n">03 / VAD</span><strong>発話部分を探す</strong><p>VAD が音声らしい区間を検出。無音や短い発話の扱いには限界があります。</p></div>
+<div class="step"><span class="n">04 / WHISPER</span><strong>日本語に変換</strong><p>faster-whisper の small モデルを CPU・int8 で実行します。</p></div>
+<div class="step"><span class="n">05 / RESULT</span><strong>画面に表示</strong><p>認識された文と、認識処理にかかった時間を表示します。</p></div>
+</div><div class="future"><strong>この先の構想：</strong> 認識テキスト → Jev などの意味判断 → 安全な実行判定 → 許可したアプリの起動。<strong>この経路は現在未実装</strong>です。</div></div></section>
+
+<section class="section" id="findings"><h2>02　独立レビューで見つかったこと</h2><p class="lead">２人のサブエージェントに同じ対象と依頼だけを渡して個別に確認。いずれも同じ２点を指摘しました。</p><div class="grid2">
+<article class="panel finding"><span class="tag warn">修正前：中程度</span><h3>① 音声変換でノイズが混入する</h3><p>以前の単純な変換では、高い周波数が別の低い周波数に化ける「折り返し」が発生。実機と同じ 44.1 kHz の模擬信号で再現しました。</p><p class="result"><strong>対応：</strong> 帯域制限を行う <code>scipy.signal.resample_poly</code> に変更し、不要な周波数が抑えられるテストを追加。実音声で精度がどれだけ変わるかは未測定です。</p></article>
+<article class="panel finding"><span class="tag warn">修正前：中程度</span><h3>② 起動時にモデル照会が起こり得る</h3><p>以前は、モデルを保存済みでも Hugging Face にモデル情報を問い合わせる可能性がありました。音声が送信されるという指摘ではありません。</p><p class="result"><strong>対応：</strong> 通常起動はローカルにあるモデルを使用。取得・更新は <code>--download-model</code> を指定します。再レビューで発見された、モデルの一部欠損時の追加取得経路も、必要なファイルを確認してから読み込むことで防ぎました。</p></article>
+</div><div class="notice"><strong>残ること：モデルの版は完全には固定されていません。</strong><p>取得・更新時にはその時点のモデルが使われます。今回の保存済み small モデルの参照は <code>536b0662742c02347bc0e980a01041f333bce120</code>。再現性を厳密に求める場合は、モデル版と依存関係の固定・検証が次の課題です。</p></div></section>
+
+<section class="section" id="security"><h2>03　セキュリティとプライバシー</h2><p class="lead">現在の認識テストに限定した、コードと動作の確認結果です。</p><div class="pillars">
+<div class="panel"><span class="number">01 / 音声データ</span><h3>端末内で処理</h3><p>対象コードに、録音音声や文字起こしを外部へ送信・ファイル保存する処理は見当たりません。認識結果は画面に表示されます。</p></div>
+<div class="panel"><span class="number">02 / 通信</span><h3>通常はローカルのみ</h3><p>通常のモデル読み込みはローカル限定。モデルの初回取得や明示的な更新、ライブラリのインストールにはネット接続が必要です。</p></div>
+<div class="panel"><span class="number">03 / 操作権限</span><h3>PC 操作は未接続</h3><p>今のテストには、アプリ起動や任意のコマンド実行の経路はありません。Jev にテキストを渡す処理もありません。</p></div>
+</div><div class="notice"><strong>保証の範囲</strong><p>アプリ自身の処理を確認した結果であり、画面を見られること、端末履歴、OS のページファイル、他のアプリによる記録まで防ぐ保証ではありません。明示的にネットワーク共有上のファイルを指定した場合などは、その共有先へのアクセスが生じます。通信全体の監視、侵入テスト、依存ライブラリの包括的な脆弱性監査は行っていません。将来 Jev を接続する場合は、送信されるテキスト・費用・停止方法を改めて確認します。</p></div></section>
+
+<section class="section" id="tests"><h2>04　どこまで動作確認できたか</h2><p class="lead">「動いた」と「精度を評価できた」を分けて記載しています。</p><div class="panel table-wrap"><table><thead><tr><th scope="col">確認項目</th><th scope="col">結果</th><th scope="col">内容と限界</th></tr></thead><tbody>
+<tr><td>Windows のマイク検出</td><td><span class="tag ok">確認済み</span></td><td>既定のマイクが列挙されることを確認。実際の録音品質は未確認。</td></tr>
+<tr><td>保存済みモデルの読み込み</td><td><span class="tag ok">確認済み</span></td><td>ローカル限定で読み込み。Python の socket 接続を監視した読み込みテストでは接続試行 0 回。全通信の包括監査ではありません。</td></tr>
+<tr><td>日本語音声 → テキスト</td><td><span class="tag ok">1件確認</span></td><td>Windows の合成音声「メモ帳を開いてください。」を入力し、「メモ帳を開いてください」と表示。句読点を除き一致。合成音声１件であり、実声の精度を示すものではありません。</td></tr>
+<tr><td>無音とコードの主要処理</td><td><span class="tag ok">確認済み</span></td><td>無音ファイルが空結果になること、無音入力・帯域制限・認識結果の結合・モデル解決を確認。自動テスト 5 件成功。</td></tr>
+<tr><td>あなたの実声・実マイク</td><td><span class="tag warn">未確認</span></td><td>認識率、短い指示、固有名詞、背景雑音、実使用時の応答時間はこれから確認。</td></tr>
+<tr><td>Jev とアプリ起動</td><td><span class="tag neutral">未実装</span></td><td>現在の音声テストとはつながっていません。既存の Jev ベンチマークは音声認識精度の測定ではありません。</td></tr>
+</tbody></table></div></section>
+
+<section class="section" id="next"><h2>05　次に試してほしいこと</h2><p class="lead">まずは短い指示をいくつか話し、実際の使い心地を確認します。</p><div class="grid2"><div class="panel"><h3>起動とテスト</h3><ul><li><a href="%E9%9F%B3%E5%A3%B0%E8%AA%8D%E8%AD%98%E3%83%86%E3%82%B9%E3%83%88.cmd">音声認識テスト.cmd</a> を開く。</li><li>準備完了後、Enter を押して「メモ帳を開いて」「Chrome を開いて」などと話す。</li><li>表示された文章と認識時間を確認。再度 Enter で続けられます。</li><li>話した内容・表示結果・気になった待ち時間を共有してください。終了は <code>q</code> + Enter。</li></ul></div><div class="panel"><h3>次の判断材料</h3><ul><li>アプリ名や日本語の聞き間違いがどのくらいあるか。</li><li>5秒の録音と認識待ちが使いやすいか。</li><li>音量や雑音で結果が変わるか。</li><li>十分な結果が得られたら、許可リスト・中止・誤動作対策を設計したうえで意味判断と接続。</li></ul></div></div></section>
+
+<section class="section" id="evidence"><h2>06　根拠・レビューの範囲</h2><div class="panel"><p>２件の独立レビューは修正前の実装と環境を対象に実施。指摘後、実装担当が修正し、サブエージェントが修正箇所を再確認。追加指摘にも対応し、再確認を受けました。静的コード確認と限定的なテストであり、正式なセキュリティ監査や体系的な認識精度評価ではありません。</p><ul class="refs"><li>実装：<a href="voice_test.py">voice_test.py</a> ／ <a href="tests/test_voice_test.py">自動テスト</a> ／ <a href="README.md">起動方法</a> ／ <a href="pyproject.toml">依存関係</a></li><li>技術資料：<a href="https://github.com/SYSTRAN/faster-whisper">faster-whisper 公式</a>、<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html">SciPy resample_poly</a>、<a href="https://huggingface.co/docs/huggingface_hub/en/guides/manage-cache">Hugging Face キャッシュ</a></li></ul></div></section>
+<footer>JARVIS · 音声認識テストのレビュー記録 ／ この結果は確認日時点のローカル環境に基づきます。</footer>
+</main></body></html>

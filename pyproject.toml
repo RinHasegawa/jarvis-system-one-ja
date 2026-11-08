@@ -1,7 +1,7 @@
 [project]
 name = "jarvis-local"
 version = "0.0.0"
-description = "JARVIS feasibility benchmarks; the V0 application is not implemented yet."
+description = "Windows dictation-to-action prototype and Japanese System One feasibility benchmarks."
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "laya==0.3.3",
@@ -12,3 +12,8 @@ dependencies = [
     "openvino==2026.4.0",
     "psutil==7.0.0",
 ]
+
+[project.optional-dependencies]
+voice = ["faster-whisper==1.2.1", "sounddevice==0.5.3", "av==16.1.0", "scipy==1.18.1"]
+live = ["vosk==0.3.45", "sounddevice==0.5.3", "scipy==1.18.1"]
+sherpa = ["sherpa-onnx==2.0.1", "sounddevice==0.5.3", "scipy==1.18.1"]

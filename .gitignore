@@ -22,6 +22,22 @@ build/
 *.pfx
 credentials*.json
 service-account*.json
+*.dpapi
+
+# Private recordings and machine-local application data
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.db
+*.db3
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
 
 # Downloaded or converted model weights
 benchmarks/artifacts/
@@ -35,6 +51,7 @@ benchmarks/artifacts/
 
 # Machine-local benchmark by-products and non-canonical Vercel attempt
 *.log
+diagnostic_results/
 benchmarks/clean_run/jev_vercel_action_target_v2.json
 benchmarks/vercel_jev/
 

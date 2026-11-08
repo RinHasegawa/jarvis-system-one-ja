@@ -1,5 +1,16 @@
 # JARVIS project guidance
 
+## Current voice prototype (November 2026)
+
+- The user-authorized prototype now uses ChatGPT desktop dictation -> Tk text-change event -> hosted TypeSafe Jev -> deterministic Windows app launch. The earlier local-only and evaluation-only restrictions below describe the original benchmark milestone, not this explicitly authorized prototype.
+- Main entry: `jarvis_event_actions.py`; quiet launcher: `Open JARVIS Quiet.vbs`. Only one clear English command to open Chrome or Notepad may execute automatically.
+- The first non-empty text change after stopping dictation is an experimental trigger, not a guaranteed dictation-completion event. Do not claim that CompositionFinalized was observed or that all future insertions are atomic.
+- Preserve cancellation, revision checks, one-launch protection, fixed executable paths, shell=False, and local evidence logging. No arbitrary commands, compound tasks, or additional agent integration are authorized by this scope.
+- Keys are optionally DPAPI-encrypted in `.cache/`; never publish them. Recordings, live-user transcripts, local caches and databases stay outside Git. Read `docs/VOICE_APP.md` for setup and limitations.
+- Preserve the historical benchmark and its original 70 cases independently of voice-prototype tests.
+
+## Original benchmark milestone
+
 ## Project identity
 
 - Project name: **JARVIS**.

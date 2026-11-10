@@ -61,6 +61,7 @@ class EventTestApp(PopupApp):
             self.schedule_event_trigger(text.strip())
 
     def schedule_event_trigger(self, text):
+        self.health('text_change_detected', character_count=len(text))
         self.event_triggered = True
         self.event_snapshot = text
         self.root.after_idle(lambda snapshot=text: self.send_event_snapshot(snapshot))

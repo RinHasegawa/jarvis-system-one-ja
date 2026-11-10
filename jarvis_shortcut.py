@@ -1,10 +1,15 @@
 """Shortcut-driven dictation popup; retains the existing confirmed action gate."""
 import ctypes
 from ctypes import wintypes
+import json
+import os
+from pathlib import Path
 import queue
+import sys
 import threading
 import time
 import tkinter as tk
+from datetime import datetime
 from tkinter import ttk
 
 from jarvis_command import App
@@ -68,6 +73,9 @@ class ShortcutApp(App):
         self.changed_at = 0
         self.events = queue.Queue()
         self.stopping = threading.Event()
+        self.health_path = Path(__file__).resolve().parent / 'diagnostic_results' / ('shortcut_health_' + datetime.now().strftime('%Y%m%d_%H%M%S_%f') + '.jsonl')
+        self.health_last_heartbeat = 0
+        self.health('started', version=Path(sys.argv[0]).name, pid=os.getpid())
         self.status.set('Ctrl+Shift+J: start/stop. ChatGPT dictation must use Ctrl+I. Review actions before execution.')
         for child in root.winfo_children():
             for widget in child.winfo_children():
@@ -87,6 +95,16 @@ class ShortcutApp(App):
         self.hotkey_thread = threading.Thread(target=self.hotkey_loop, args=(self.events, self.stopping), daemon=True)
         self.hotkey_thread.start()
         self._poll_id = root.after(50, self.poll)
+
+    def health(self, event, **detail):
+        # Only program state and shortcut metadata; never dictated text or audio.
+        try:
+            self.health_path.parent.mkdir(exist_ok=True)
+            with self.health_path.open('a', encoding='utf-8') as stream:
+                stream.write(json.dumps({'time': datetime.now().astimezone().isoformat(),
+                                         'event': event, **detail}) + '\n')
+        except OSError:
+            self.health_logging_failed = True
 
     def save_key(self):
         try:
@@ -112,6 +130,7 @@ class ShortcutApp(App):
             message = ('Windows denied shortcut registration. Try launching normally on your desktop.' if error == 5
                        else 'Shortcut in use. Close the older JARVIS window; this app will retry automatically.')
             if not reported_error:
+                events.put(('registration_failed', error))
                 events.put(('error', message))
                 reported_error = True
             if stopping.wait(2): return
@@ -133,9 +152,14 @@ class ShortcutApp(App):
         try:
             while True:
                 event, detail = self.events.get_nowait()
-                if event == 'shortcut': self.on_shortcut()
-                elif event == 'registered' and detail:
-                    self.status.set('Shortcut is ready. Press Ctrl+Shift+J to start dictation.')
+                if event == 'shortcut':
+                    self.health('hotkey_received', phase=self.phase, pending=self.pending)
+                    self.on_shortcut()
+                elif event == 'registered':
+                    self.health('hotkey_registered', after_retry=bool(detail))
+                    if detail: self.status.set('Shortcut is ready. Press Ctrl+Shift+J to start dictation.')
+                elif event == 'registration_failed':
+                    self.health('hotkey_registration_failed', windows_error=detail)
                 elif event == 'error':
                     self.status.set(detail)
                     self.root.deiconify()
@@ -148,6 +172,9 @@ class ShortcutApp(App):
                     if handler is not None: handler(detail)
         except queue.Empty:
             pass
+        if time.monotonic() - self.health_last_heartbeat >= 60:
+            self.health('heartbeat', phase=self.phase, hotkey_thread_alive=self.hotkey_thread.is_alive())
+            self.health_last_heartbeat = time.monotonic()
         self.process_waiting_text()
         if not self.stopping.is_set(): self._poll_id = self.root.after(50, self.poll)
 
@@ -171,10 +198,19 @@ class ShortcutApp(App):
                 self.status.set('No text arrived yet. Check ChatGPT dictation, then retry or enter text.')
 
     def on_shortcut(self):
-        if self.phase in ('starting', 'stopping', 'waiting_text'):
+        if self.phase == 'waiting_text':
+            # A deliberate extra press abandons the previous dictation. It must
+            # not start a new recording in the same press: old text may arrive late.
+            self.health('waiting_text_cancelled_by_hotkey')
+            self.cancel()
+            self.status.set('Previous dictation cancelled. Press Ctrl+Shift+J again to start a new command.')
+            return
+        if self.phase in ('starting', 'stopping'):
+            self.health('hotkey_ignored', reason='step_in_progress', phase=self.phase)
             self.status.set('Please wait for the current dictation step.')
             return
         if self.pending:
+            self.health('hotkey_ignored', reason='request_pending', phase=self.phase)
             self.status.set('A Jev request is in progress. Cancel it before starting another command.')
             return
         if self.phase == 'recording':
@@ -195,20 +231,25 @@ class ShortcutApp(App):
         if self.phase != ('starting' if action == 'start' else 'stopping'): return
         if any(user32.GetAsyncKeyState(vk) & 0x8000 for vk in (0x11, 0x10, 0x4A, 0x49)):
             if attempts >= 100:
+                self.health('key_release_timeout', step=action)
                 self.phase = 'ready'; self.status.set('Release the shortcut keys and try again.')
             else: self.root.after(30, lambda: self.wait_release_and_send(action, attempts + 1))
             return
         self.root.update_idletasks()
         window = user32.GetAncestor(self.root.winfo_id(), 2)
         if self.root.focus_get() != self.box or user32.GetForegroundWindow() != window:
+            self.health('focus_failed', step=action, field_focused=self.root.focus_get() == self.box,
+                        foreground_matches=user32.GetForegroundWindow() == window)
             self.phase = 'ready'
             self.status.set('Command box could not receive focus. Stop dictation with Ctrl+I if needed, then retry.')
             return
         try:
             self.log('dictation_shortcut_attempt', step=action)
             send_dictation_shortcut()
+            self.health('dictation_shortcut_sent', step=action)
             self.log('dictation_shortcut_sent', step=action)
-        except (OSError, RuntimeError):
+        except (OSError, RuntimeError) as exc:
+            self.health('dictation_shortcut_failed', step=action, error_type=type(exc).__name__)
             self.phase = 'ready'; self.status.set('Could not send or log the dictation shortcut. Try again.')
             return
         if action == 'start':
@@ -231,6 +272,7 @@ class ShortcutApp(App):
             self.status.set('JARVIS cancelled. Stop ChatGPT dictation with Ctrl+I if still active.')
 
     def close(self):
+        self.health('stopped')
         self.stopping.set()
         if self._poll_id is not None:
             self.root.after_cancel(self._poll_id)

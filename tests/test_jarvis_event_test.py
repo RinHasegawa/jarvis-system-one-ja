@@ -50,6 +50,17 @@ class EventTestTests(unittest.TestCase):
             ask.assert_not_called()
             self.assertFalse(self.app.event_triggered)
 
+    def test_shortcut_while_waiting_cancels_without_sending_or_starting(self):
+        self.app.phase = 'waiting_text'
+        with patch.object(self.app, 'log'), patch('jarvis_event_test.ask_jev') as ask, patch.object(self.app, 'wait_release_and_send') as send:
+            self.app.on_shortcut()
+            self.assertEqual(self.app.phase, 'ready')
+            self.assertIn('cancelled', self.app.status.get().lower())
+            self.app.box.insert('1.0', 'Open Google Chrome')
+            self.root.update()
+            ask.assert_not_called()
+            send.assert_not_called()
+
     def test_later_text_change_marks_trial_as_uncertain(self):
         self.app.phase = 'review'
         self.app.event_triggered = True

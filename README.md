@@ -43,6 +43,8 @@ Enter your TypeSafe API key in the masked field under Settings. You may save it 
 
 The [voice app guide](docs/VOICE_APP.md) contains setup, optional sign-in startup, implementation details, and limitations. It is currently in Japanese.
 
+If the shortcut is pressed while JARVIS is still waiting for dictation text, that press cancels the unfinished attempt; press it again to begin a new command. Double-click `Check JARVIS Shortcut.cmd` to inspect the latest local shortcut health log. The diagnostic records shortcut and program state, not speech or text from the input box. A missing event cannot by itself explain why Windows did not deliver a key press. See the [project changelog](CHANGELOG.md) for the November 2026 investigation and verification.
+
 ## Data and privacy
 
 - JARVIS sends dictated text to TypeSafe's Jev API. ChatGPT handles its own audio processing and storage separately.

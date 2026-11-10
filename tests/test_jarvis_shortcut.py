@@ -1,4 +1,7 @@
 import ctypes
+import json
+from pathlib import Path
+import tempfile
 import tkinter as tk
 import unittest
 from unittest.mock import patch
@@ -49,6 +52,20 @@ class ShortcutTests(unittest.TestCase):
 
     def test_windows_input_structure_has_native_size(self):
         self.assertEqual(ctypes.sizeof(INPUT), 40 if ctypes.sizeof(ctypes.c_void_p) == 8 else 28)
+
+    def test_health_records_registration_failure_and_received_hotkey_without_text(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent.parent / 'diagnostic_results') as folder:
+            self.app.health_path = Path(folder) / 'health.jsonl'
+            self.app.box.insert('1.0', 'private dictated words')
+            self.app.events.put(('registration_failed', 1409))
+            self.app.events.put(('shortcut', None))
+            with patch.object(self.app, 'on_shortcut'):
+                self.app.poll()
+            contents = self.app.health_path.read_text(encoding='utf-8')
+            entries = [json.loads(line) for line in contents.splitlines()]
+            self.assertEqual([e['event'] for e in entries[:2]], ['hotkey_registration_failed', 'hotkey_received'])
+            self.assertEqual(entries[0]['windows_error'], 1409)
+            self.assertNotIn('private dictated words', contents)
 
 
 if __name__ == '__main__':
